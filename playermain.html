@@ -1,0 +1,78 @@
+<html>
+    <meta charset="utf-8">
+    <title>PLAYER</title>
+    <link rel="icon" href="./logo.PNG">
+    <head>
+        <style>
+            body{
+                background-color: rgb(4, 34, 90);
+            }
+            h1{     
+                color: white;              
+                font-size: 60px;
+                text-align: center;
+            }
+            .coach{
+                position: relative; /*위치잡아야함*/
+                left: 27%;
+                list-style-type: none;
+                font-size: 25px;
+                font-weight: 600;
+                padding: 10px 60px;
+                border: 2px solid rgb(211, 208, 248);
+                float: left;
+                width: 150px;
+                text-align: center;                 
+            }
+            a:link{
+                text-decoration: none;
+                color: white;
+            }
+            li:hover{
+                color: rgb(8, 42, 105);
+                background-color: white;
+            }
+            a:visited{
+                color: white;
+            }           
+            p{
+                font-size: 80px;
+                font-weight: 600;
+                height: 50px;
+            }
+            div{ 
+                text-align: center;
+            }
+            .main{
+                position: fixed;
+                top:10%;
+                left: 85%;
+                width: 150px;
+                height: 100px;
+            }           
+        </style>
+    </head>
+    <body>
+        <iframe src="./menu.html" width="100%" height="50px" frameborder="0" scrolling="no"></iframe>
+        <h1>
+            <ins>PLAYER</ins>
+        </h1>
+        <a href="main.html">
+            <img class="main" src="./logo.PNG" alt="logo"/>
+        </a>     
+        <ul>          
+            <a href="./playermain.html" target="_parent">
+                <li class="coach">코칭스텝</li>
+            </a>
+            <a href="./player.html" target="_parent">
+                <li class="coach">선수</li>
+            </a>       
+        </ul></br>
+        <div>
+            <p>HEAD COACH</p>
+            <img src="./chandjin.PNG" alt="headcoach"/>
+            <p>COACH</p>
+            <img src="./myongho.PNG" alt="coach"/>
+        </div>  
+    </body>
+</html>

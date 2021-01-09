@@ -1,0 +1,436 @@
+<html>
+    <meta charset="utf-8">
+    <title>GAME</title>
+    <link rel="icon" href="./logo.PNG">
+    <head>
+        <style>
+            body{
+                background-color: rgb(4, 34, 90);
+            }
+            h1{
+                position: relative;
+                color: white;              
+                font-size: 60px;
+                text-align: center;
+            }
+            li{
+                list-style-type: none;
+                font-size: 25px;
+                font-weight: 600;
+                padding: 15px 0px;
+                color :rgb(4, 34, 90);
+                z-index: 3;
+            }          
+            a{
+                text-decoration: none;
+                z-index: 3;
+            }
+            a:visited{
+                color: black;
+            }
+            .vl {
+                position: absolute;
+                border-left: 1.5px solid rgb(4, 34, 90);
+                height: 500px;
+                left: 17%;
+                top: 40%;
+                z-index: 3;
+            }
+            #list{
+                position: absolute;
+                left: 4%;
+                top : 35%;
+                z-index: 3;          
+            }
+            td, th{
+                border: 1px solid rgb(4, 34, 90);
+                border-collapse: collapse;
+                font-size: 20px;
+                font-weight: 600;
+                width: 200px;
+                height: 40px;
+                color:black;
+                z-index: 3;
+            }
+            th{
+                background-color: rgb(4, 34, 90);
+                color: white;
+                z-index: 3;
+                border: 1px solid black;  
+            }
+            table{
+                position: absolute;
+                top :49%;
+                left: 22%;
+                text-align: center;
+                background-color: white;
+                border-collapse: collapse;   
+                z-index: 3;
+            }
+            #back{
+                width: 86%;
+                height: 550px;
+                position: absolute;
+                top: 35%;
+                left: 5%;
+                background-color: white;
+                z-index: 1;
+                opacity: 0.9;
+            }
+            #where{
+                position: absolute;
+                right: 32%;
+                top: 39%;
+                z-index: 3;
+            }
+            div>p{
+                background-color: white;
+                float: left;
+                font-size: 20px;
+                border: 3px solid navy;
+                border-collapse: collapse;
+                padding: 7px 18px;
+                margin: 3px;
+                font-weight: 700;
+            }
+            .record:hover{
+                color: rgb(131, 168, 238);
+            }
+            #myselect{
+                position: absolute;
+                border: 3px solid navy;
+                font-size: 20px;
+                font-weight: 700;
+                right: 18%;
+                top: 39.7%;
+                width: 115px;
+                height: 46px;
+                z-index: 3;
+            }
+            input[type='text']{
+                position: absolute;
+                top: 40%;
+                left: 22.5%;
+                width: 250px;
+                height: 40px;
+                border: 2px solid navy;
+                font-size: 20px;
+                font-weight: 600;
+                z-index: 3;
+            }
+            input[type='button']{
+                position: absolute;
+                top: 40%;
+                left: 41.5%;
+                width: 80px;
+                height: 40px;
+                border: 2px solid navy;
+                background-color: white;
+                font-size: 20px;
+                font-weight: 600;
+                z-index: 3;
+            }
+            .main{
+                position: fixed;
+                top:10%;
+                left: 85%;
+                width: 150px;
+                height: 100px;
+                z-index: 3;
+            }
+        </style>
+    </head>
+    <body>
+        <!--메뉴-->
+        <iframe src="./menu.html" width="100%" height="50px" frameborder="0" scrolling="no"></iframe>
+        <h1>
+            <ins>GAME</ins>
+        </h1>
+        <a href="main.html"> <!--클릭시 main으로 감 -->
+            <img class="main" src="./logo.PNG" alt="logo"/>
+        </a>
+        <div id="back"></div> <!--h1아래 전체 배경 박스-->
+        <div class="vl"></div> <!--경기 리스트 옆 라인-->
+        <ul id="list"> <!--경기에 관한 리스트-->
+            <a href="#">
+                <li class="record">경기일정</li>     
+            </a>
+            <a href="#"> <!--클릭시 페이지 준비중 창-->
+                <li class="record" onclick="clickme()">경기기록</li>
+            </a>
+            <a href="#"> <!--클릭시 페이지 준비중 창-->
+                <li class="record" onclick="clickme()">티켓예매</li>
+            </a>   
+        </ul>
+        <div id="where">
+            <p id="home">HOME</p> <!--마우스 오버 효과-->       
+            <p id="away">AWAY</p> <!--마우스 오버 효과-->    
+        </div>
+        <select id="myselect" onchange="selectCh()"> <!--option 선택에 따라 동작-->
+            <option value="win">WIN</option>
+            <option value="lose">LOSE</option>
+        </select>
+        <form>
+            <!--상대팀 입력받는 텍스트 바-->
+            <input type="text" name="awayteam" id="awayteam" value="" placeholder="상대팀을 입력하세요"/>
+            <!--위 텍스트바 value 받아 클릭시 동작-->
+            <input type="button" value="검색" onclick="search()"/>
+        </form>
+        <table> <!--경기일정 표-->
+            <tr>
+                <th>일정</th>
+                <th>상대팀</th>
+                <th>장소</th>
+                <th>결과</th>
+            </tr>
+            <tr class="aw">
+                <td>2020.12.05</td>
+                <td class="samsung">삼성</td>
+                <td>잠실실내체육관</td>
+                <td class="lost">83 : 79 (패)</td>
+            </tr>
+            <tr class="jj">
+                <td>2020.12.07</td>
+                <td class="db">DB</td>
+                <td>전주실내체육관</td>
+                <td class="lost">92 : 97 (패)</td>
+            </tr>
+            <tr class="jj">
+                <td>2020.12.10</td>
+                <td class="orion">오리온</td>
+                <td>전주실내체육관</td>
+                <td><a href="#" class="won">70 : 58 (승)</a></td>
+            </tr>
+            <tr class="aw">
+                <td>2020.12.13</td>
+                <td class="kgc">KGC</td>
+                <td>안양실내체육관</td>
+                <td class="lost">83 : 79 (패)</td>
+            </tr>
+            <tr class="jj">
+                <td>2020.12.15</td>
+                <td class="samsung">삼성</td>
+                <td>전주실내체육관</td>
+                <td><a href="#" class="won">91 : 72 (승)</a></td>
+            </tr>
+            <tr class="jj">
+                <td>2020.12.19</td>
+                <td class="kt">KT</td>
+                <td>전주실내체육관</td>
+                <td><a href="#" class="won">75 : 70 (승)</a></td>    
+            </tr>
+            <tr class="jj">
+                <td>2020.12.20</td>
+                <td class="db">DB</td>
+                <td>전주실내체육관</td>
+                <td><a href="#" class="won">78 : 52 (승)</a></td>
+            </tr>
+            <tr class="jj">
+                <td>2020.12.22</td>
+                <td class="sk">SK</td>
+                <td >전주실내체육관</td>
+                <td><a href="#" class="won">95 : 70 (승)</a></td>
+            </tr>
+            <tr class="aw">
+                <td>2020.12.25</td>
+                <td class="orion">오리온</td>
+                <td>고양체육관</td>
+                <td><a href="#" class="won">72 : 85 (승)</a></td>
+            </tr>          
+            <tr class="aw">
+                <td>2020.12.26</td>
+                <td class="lg">LG</td>
+                <td>창원체육관</td>
+                <td><a href="#" class="won">82 : 90 (승)</a></td>
+                
+            </tr>
+            
+        </table>
+       
+    </body>
+    <script>
+        //HOME마우스오버했을때 자신 배경색, 텍스트색 변경, 홈경기 테이블 배경 색 변경
+        //HOME마우스아웃 했을때 다시 돌아오게 함
+        var home = document.getElementById('home');
+        var jeonju = document.getElementsByClassName('jj')
+        home.addEventListener('mouseover' ,function(){
+            home.style.backgroundColor = 'rgb(4, 34, 90)';
+            home.style.color = 'white';
+            for(var i=0; i < jeonju.length; i++)
+                jeonju[i].style.backgroundColor = 'skyblue';   
+            });
+        home.addEventListener('mouseout' ,function(){
+            home.style.backgroundColor = 'white';
+            home.style.color = 'black';
+            for(var i=0; i < jeonju.length; i++)
+                jeonju[i].style.backgroundColor = 'white';   
+            });
+        
+        //AWAY마우스오버했을 때 자신 배경색, 텍스트색 변경, 원정경기 테이블 배경 색 변경
+        //AWAY마우스아웃 했을때 다시 돌아오게 함
+        var away = document.getElementById('away');
+        var aw = document.getElementsByClassName('aw')
+        away.addEventListener('mouseover' ,function(){
+            away.style.backgroundColor = 'rgb(4, 34, 90)';
+            for(var i=0; i < aw.length; i++)
+                aw[i].style.backgroundColor = 'skyblue';   
+            });       
+        away.addEventListener('mouseout' ,function(){
+            away.style.backgroundColor = 'white';
+            away.style.color = 'black';
+            for(var i=0; i < aw.length; i++)
+                aw[i].style.backgroundColor = 'white';   
+            });
+
+        //경기기록, 티켓예매 클릭 시   
+        function clickme(){
+            location.href = "pagemove.html"
+        }
+        //승패 유무 select 옵션 변경시
+        var won = document.getElementsByClassName('won');
+        function selectCh(){
+            var selectVal = document.getElementById('myselect').value;
+            var lost = document.getElementsByClassName('lost');
+            if(selectVal=="lose"){
+                for(var i=0; i < lost.length; i++)
+                    lost[i].style.color = 'red';
+                for(var i=0; i < won.length; i++)
+                    won[i].style.color = 'black';
+            }
+            if(selectVal=="win"){
+                for(var i=0; i < won.length; i++)
+                    won[i].style.color = 'blue';
+                for(var i=0; i < lost.length; i++)
+                    lost[i].style.color = 'black';
+            }   
+        }
+        //이긴경기 결과 클릭시 mvp 및 선수기록 창 띄우기
+        won[0].addEventListener('click', function(){
+            window.open('./0_mvp.png', '_blank','width= 500px');
+        });
+        won[1].addEventListener('click', function(){
+            window.open('./1_mvp.png','_blank','width= 500px');
+        });
+        won[2].addEventListener('click', function(){
+            window.open('./2_mvp.png', '_blank','width= 500px');
+        });
+        won[3].addEventListener('click', function(){
+            window.open('./3_mvp.png', '_blank','width= 500px');
+        });
+        won[4].addEventListener('click', function(){
+            window.open('./4_mvp.png', '_blank','width= 500px');
+        });
+        won[5].addEventListener('click', function(){
+            window.open('./5_mvp.png', '_blank','width= 500px');
+        });
+        won[6].addEventListener('click', function(){
+            window.open('./6_mvp.png', '_blank','width= 500px');
+        });
+
+        
+        //검색창에 상대팀이름 검색해서 원하는 상대팀에 강조표시
+        function search(){
+            var searchVal = document.getElementById('awayteam').value;
+            var samsung = document.getElementsByClassName('samsung');
+            var db = document.getElementsByClassName('db');
+            var orion = document.getElementsByClassName('orion');
+            var kgc = document.getElementsByClassName('kgc');
+            var kt = document.getElementsByClassName('kt');
+            var sk = document.getElementsByClassName('sk');
+            var lg = document.getElementsByClassName('lg');
+            if(searchVal=="삼성"){
+                samsung[0].innerHTML = "<mark>삼성</mark>";
+                samsung[1].innerHTML = "<mark>삼성</mark>";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kgc[0].innerHTML = "KGC";
+                kt[0].innerHTML = "KT";
+                sk[0].innerHTML = "SK";
+                lg[0].innerHTML = "LG";
+            }
+            else if(searchVal=="DB"){
+                db[0].innerHTML = "<mark>DB</mark>";
+                db[1].innerHTML = "<mark>DB</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kgc[0].innerHTML = "KGC";
+                kt[0].innerHTML = "KT";
+                sk[0].innerHTML = "SK";
+                lg[0].innerHTML = "LG";
+            }
+            else if(searchVal=="오리온"){
+                orion[0].innerHTML = "<mark>오리온</mark>";
+                orion[1].innerHTML = "<mark>오리온</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                kgc[0].innerHTML = "KGC";
+                kt[0].innerHTML = "KT";
+                sk[0].innerHTML = "SK";
+                lg[0].innerHTML = "LG";
+            }
+            else if(searchVal=="KGC"){
+                kgc[0].innerHTML = "<mark>KGC</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kt[0].innerHTML = "KT";
+                sk[0].innerHTML = "SK";
+                lg[0].innerHTML = "LG";
+            }
+            else if(searchVal=="KT"){
+                kt[0].innerHTML = "<mark>KT</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kgc[0].innerHTML = "KGC";
+                sk[0].innerHTML = "SK";
+                lg[0].innerHTML = "LG";
+            }   
+            else if(searchVal=="SK"){
+                sk[0].innerHTML = "<mark>SK</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kgc[0].innerHTML = "KGC";
+                kt[0].innerHTML = "KT";
+                lg[0].innerHTML = "LG";
+            }
+            else if(searchVal=="LG"){
+                sk[0].innerHTML = "<mark>LG</mark>";
+                samsung[0].innerHTML = "삼성";
+                samsung[1].innerHTML = "삼성";
+                db[0].innerHTML = "DB";
+                db[1].innerHTML = "DB";
+                orion[0].innerHTML = "오리온";
+                orion[1].innerHTML = "오리온";
+                kgc[0].innerHTML = "KGC";
+                kt[0].innerHTML = "KT";
+                sk[0].innerHTML = "SK";
+            }
+            else if(searchVal == "전자랜드"){
+                alert("12월 경기가 없습니다.");
+            }
+            else if(searchVal == "모비스"){
+                alert("12월 경기가 없습니다.");
+            }
+            else{
+                alert("상대팀 이름을 확인해주세요.");
+            }
+        }
+    
+    </script>
